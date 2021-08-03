@@ -174,7 +174,7 @@ class _LoginPageState extends State<LoginPage> {
         GestureDetector(
           onTap: (){
             setState(() {
-              _pageState=2;
+              _pageState=1;
             });
           },
           child: AnimatedContainer(
