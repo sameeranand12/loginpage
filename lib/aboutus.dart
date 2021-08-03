@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   double  _loginwidth = 0;
   double  _loginopacity =0;
 
+  double _headingtop =100;
   double windowwidth = 0 ;
   double windowheight = 0;
   @override
@@ -31,6 +32,7 @@ class _LoginPageState extends State<LoginPage> {
       _bgcolor = Colors.white;
       _headingcolor= Colors.black;
       _contactYoffset = windowheight;
+      _headingtop =100;
 
       _loginopacity = 1;
       _loginwidth = windowwidth;
@@ -43,6 +45,8 @@ class _LoginPageState extends State<LoginPage> {
         _headingcolor = Colors.white;
         _contactYoffset = windowheight;
 
+        _headingtop = 90;
+
          _loginopacity = 1;
         _loginwidth =windowwidth;
         _loginXoffset = 0;
@@ -52,11 +56,14 @@ class _LoginPageState extends State<LoginPage> {
         _bgcolor = Colors.black;
         _headingcolor = Colors.white;
 
+        _headingtop = 80;
+
+
         _loginopacity =0.7;
         _loginwidth = windowwidth - 40;
         _loginYoffset = 200;
         _loginXoffset = 20;
-        _contactYoffset = 390;
+        _contactYoffset = 270;
         break;
     }
     return Stack(
@@ -79,9 +86,12 @@ class _LoginPageState extends State<LoginPage> {
                 child: Container(
                   child: Column(
                     children: [
-                      Container(
-                          margin:const EdgeInsets.only(
-                              top :100),
+                      AnimatedContainer(
+                        duration: Duration(
+                          milliseconds: 1000,
+                        ),
+                          margin:  EdgeInsets.only(
+                              top :_headingtop),
 
                           child: Text('About Us' ,style: TextStyle(
                              color: _headingcolor ,
