@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
  double _contactYoffset = 0;
 
   double  _loginwidth = 0;
- // double  _loginopacity =0;
+  double  _loginopacity =0;
 
   double windowwidth = 0 ;
   double windowheight = 0;
@@ -32,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
       _headingcolor= Colors.black;
       _contactYoffset = windowheight;
 
-     // _loginopacity = 0;
+      _loginopacity = 1;
       _loginwidth = windowwidth;
       _loginXoffset = 0;
       _loginYoffset = windowheight;
@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
         _headingcolor = Colors.white;
         _contactYoffset = windowheight;
 
-       // _loginopacity = 0;
+         _loginopacity = 1;
         _loginwidth =windowwidth;
         _loginXoffset = 0;
         _loginYoffset = 270 ;
@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
         _bgcolor = Colors.black;
         _headingcolor = Colors.white;
 
-       // _loginopacity =0.7;
+        _loginopacity =0.7;
         _loginwidth = windowwidth - 40;
         _loginYoffset = 200;
         _loginXoffset = 20;
@@ -164,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
             transform: Matrix4.translationValues(_loginXoffset, _loginYoffset, 1),
            decoration: BoxDecoration(
-             color: Colors.white ,
+             color: Colors.white.withOpacity(_loginopacity) ,
              borderRadius: BorderRadius.only(
              topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
