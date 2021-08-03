@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'login.dart';
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -167,6 +167,7 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
           child: AnimatedContainer(
+            padding: EdgeInsets.all(20),
              width:   _loginwidth,
               curve: Curves.fastLinearToSlowEaseIn,
               duration: Duration(
@@ -176,9 +177,17 @@ class _LoginPageState extends State<LoginPage> {
            decoration: BoxDecoration(
              color: Colors.white.withOpacity(_loginopacity) ,
              borderRadius: BorderRadius.only(
-             topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-             ))
+             topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+             )
+           ),
+            child: Column(
+              children: [
+                PrimaryButton(
+                  btnText: "Login",
+                )
+              ],
+            ),
            ),
         ),
         GestureDetector(
@@ -188,6 +197,7 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
           child: AnimatedContainer(
+            padding: EdgeInsets.all(32),
               curve: Curves.fastLinearToSlowEaseIn,
               duration: Duration(
                 milliseconds: 1000,
@@ -198,7 +208,14 @@ class _LoginPageState extends State<LoginPage> {
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(20),
                     topRight: Radius.circular(20),
-                  ))
+                  ),
+              ),
+            child: Column(
+              children: [
+                PrimaryButton(btnText: "Contact Us")
+              ],
+            ),
+            
           ),
         ),
       ],
