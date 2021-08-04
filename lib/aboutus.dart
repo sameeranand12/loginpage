@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'outline.dart';
+
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -41,8 +44,8 @@ class _LoginPageState extends State<LoginPage> {
       break;
 
       case 1:
-        _bgcolor = Colors.black;
-        _headingcolor = Colors.white;
+        _bgcolor = Color(0xFF63AFBF);
+        _headingcolor = Colors.black;
         _contactYoffset = windowheight;
 
         _headingtop = 90;
@@ -53,9 +56,8 @@ class _LoginPageState extends State<LoginPage> {
         _loginYoffset = 270 ;
         break;
       case 2:
-        _bgcolor = Colors.black;
-        _headingcolor = Colors.white;
-
+        _bgcolor = Colors.teal.shade600;
+        _headingcolor = Colors.black;
         _headingtop = 80;
 
 
@@ -167,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
             });
           },
           child: AnimatedContainer(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.all(32),
              width:   _loginwidth,
               curve: Curves.fastLinearToSlowEaseIn,
               duration: Duration(
@@ -183,9 +185,32 @@ class _LoginPageState extends State<LoginPage> {
            ),
             child: Column(
               children: [
-                PrimaryButton(
-                  btnText: "Login",
-                )
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom :20),
+                      child: Text(
+                        "Login to Continue",
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
+                    InputWithIcon(),
+                    Column(
+                      children: [
+                        PrimaryButton(
+                          btnText: "Login",
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        OutlineBtn(
+                            btnText: "Contact Us"),
+                      ],
+                    ),
+                  ],
+                ),
               ],
             ),
            ),
@@ -206,19 +231,85 @@ class _LoginPageState extends State<LoginPage> {
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
                   ),
               ),
             child: Column(
               children: [
-                PrimaryButton(btnText: "Contact Us")
+                Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(bottom :20),
+                      child: Text(
+                        "Happy to have you",
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),),
+                    )
+                  ],
+                ),
+                Column(
+
+                  children: [
+                    PrimaryButton(btnText: "Contact Us"),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    OutlineBtn(
+                        btnText: "Back to Login "),
+                  ],
+                ),
               ],
             ),
             
           ),
         ),
       ],
+    );
+  }
+}
+
+
+
+class InputWithIcon extends StatefulWidget {
+  const InputWithIcon({Key? key}) : super(key: key);
+
+  @override
+  _InputWithIconState createState() => _InputWithIconState();
+}
+
+class _InputWithIconState extends State<InputWithIcon> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration:  BoxDecoration(
+        border: Border.all(
+            color: Color(0xffBC7C7C7),
+            width: 2
+        ),
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 60,
+            child: Icon(
+              Icons.email,
+              size: 20,
+              color: Colors.teal.shade600,
+            ),
+          ),
+          Container(
+              child: TextField(
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.symmetric(vertical: 20),
+                    hintText: "Enter Email.."
+                ),
+              ))
+        ],
+      ),
     );
   }
 }
