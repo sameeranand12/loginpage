@@ -25,14 +25,18 @@ class _LoginPageState extends State<LoginPage> {
   double windowheight = 0;
   @override
   Widget build(BuildContext context) {
-    windowheight =MediaQuery.of(context).size.height;
-    windowwidth = MediaQuery.of(context).size.width;
-    switch(_pageState){
+    windowheight = MediaQuery.of(context)
+        .size
+        .height;
+    windowwidth = MediaQuery.of(context)
+        .size
+        .width;
+    switch (_pageState) {
       case 0 :
         _bgcolor = Colors.white;
-        _headingcolor= Colors.black;
+        _headingcolor = Colors.black;
         _contactYoffset = windowheight;
-        _headingtop =100;
+        _headingtop = 100;
 
         _loginopacity = 1;
         _loginwidth = windowwidth;
@@ -48,9 +52,9 @@ class _LoginPageState extends State<LoginPage> {
         _headingtop = 90;
 
         _loginopacity = 1;
-        _loginwidth =windowwidth;
+        _loginwidth = windowwidth;
         _loginXoffset = 0;
-        _loginYoffset = 270 ;
+        _loginYoffset = 270;
         break;
       case 2:
         _bgcolor = Colors.black;
@@ -59,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
         _headingtop = 80;
 
 
-        _loginopacity =0.7;
+        _loginopacity = 0.7;
         _loginwidth = windowwidth - 40;
         _loginYoffset = 200;
         _loginXoffset = 20;

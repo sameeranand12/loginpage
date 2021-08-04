@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'outline.dart';
-
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -13,24 +13,38 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   int _pageState = 0;
+
   var _bgcolor  = Colors.white;
   var _headingcolor= Colors.black;
 
   double _loginXoffset = 0;
   double _loginYoffset = 0;
+
  double _contactYoffset = 0;
+  double _contactHeight = 0;
 
   double  _loginwidth = 0;
-  double  _loginopacity =0;
+  double  _loginopacity =1  ;
+  double _loginHeight = 0;
+
 
   double _headingtop =100;
   double windowwidth = 0 ;
   double windowheight = 0;
+
+ // bool _keyboardVisible = false;
+
+
   @override
   Widget build(BuildContext context) {
   windowheight =MediaQuery.of(context).size.height;
   windowwidth = MediaQuery.of(context).size.width;
-    switch(_pageState){
+
+  _loginHeight = windowheight - 270;
+  _contactHeight  = windowheight - 270;
+
+
+  switch(_pageState){
       case 0 :
       _bgcolor = Colors.white;
       _headingcolor= Colors.black;
@@ -41,14 +55,19 @@ class _LoginPageState extends State<LoginPage> {
       _loginwidth = windowwidth;
       _loginXoffset = 0;
       _loginYoffset = windowheight;
+
+      //_loginHeight = _keyboardVisible ? windowheight : windowheight - 270;
+
       break;
 
       case 1:
         _bgcolor = Color(0xFF63AFBF);
         _headingcolor = Colors.black;
+
         _contactYoffset = windowheight;
 
         _headingtop = 90;
+        //_loginHeight = _keyboardVisible ? windowheight : windowheight - 270;
 
          _loginopacity = 1;
         _loginwidth =windowwidth;
@@ -56,16 +75,19 @@ class _LoginPageState extends State<LoginPage> {
         _loginYoffset = 270 ;
         break;
       case 2:
-        _bgcolor = Colors.teal.shade600;
+        _bgcolor = Color(0xFF63AFBF);
         _headingcolor = Colors.black;
         _headingtop = 80;
 
 
         _loginopacity =0.7;
         _loginwidth = windowwidth - 40;
-        _loginYoffset = 200;
+        _loginYoffset = 200; //key
+       // _loginHeight = _keyboardVisible ? windowheight : windowheight - 240;
+
         _loginXoffset = 20;
-        _contactYoffset = 270;
+        _contactYoffset =  270;
+      //  _contactHeight = _keyboardVisible ? windowheight : windowheight - 270;
         break;
     }
     return Stack(
@@ -89,6 +111,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Column(
                     children: [
                       AnimatedContainer(
+                        curve:  Curves.fastLinearToSlowEaseIn,
                         duration: Duration(
                           milliseconds: 1000,
                         ),
@@ -162,15 +185,17 @@ class _LoginPageState extends State<LoginPage> {
           ),
 
         ),
-        GestureDetector(
-          onTap: (){
-            setState(() {
-              _pageState=2;
-            });
-          },
-          child: AnimatedContainer(
+        // GestureDetector(
+        //   onTap: (){
+        //     setState(() {
+        //       _pageState=2;
+        //     });
+        //   },
+          //child:
+         AnimatedContainer(
             padding: EdgeInsets.all(32),
              width:   _loginwidth,
+           height: _loginHeight,
               curve: Curves.fastLinearToSlowEaseIn,
               duration: Duration(
                 milliseconds: 1000,
@@ -184,6 +209,7 @@ class _LoginPageState extends State<LoginPage> {
              )
            ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   children: [
@@ -196,7 +222,15 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    InputWithIcon(),
+                    InputWithIcon(
+                      icon: Icons.email,
+                      hint: "Enter Email...",
+                    ),
+                    SizedBox(height: 20,),
+                    InputWithIcon(
+                      icon: Icons.vpn_key,
+                      hint: "Enter Password...",
+                    ),
                     Column(
                       children: [
                         PrimaryButton(
@@ -205,8 +239,16 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: 20,
                         ),
-                        OutlineBtn(
-                            btnText: "Contact Us"),
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _pageState = 2;
+                            });
+                          },
+                          child: OutlineBtn(
+                            btnText: "Create New Account",
+                          ),
+                        )
                       ],
                     ),
                   ],
@@ -214,14 +256,16 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
            ),
-        ),
-        GestureDetector(
-          onTap: (){
-            setState(() {
-              _pageState=1;
-            });
-          },
-          child: AnimatedContainer(
+
+        // GestureDetector(
+        //   onTap: (){
+        //     setState(() {
+        //       _pageState=1;
+        //     });
+        //   },
+          //child:
+       AnimatedContainer(
+    height: _contactHeight,
             padding: EdgeInsets.all(32),
               curve: Curves.fastLinearToSlowEaseIn,
               duration: Duration(
@@ -245,7 +289,17 @@ class _LoginPageState extends State<LoginPage> {
                         "Happy to have you",
                       style: TextStyle(
                         fontSize: 20,
-                      ),),
+                      ),
+                      ),
+                    ),
+                    InputWithIcon(
+                      icon: Icons.email,
+                      hint: "Enter Email...",
+                    ),
+                    SizedBox(height: 20,),
+                    InputWithIcon(
+                      icon: Icons.vpn_key,
+                      hint: "Enter Password...",
                     )
                   ],
                 ),
@@ -256,15 +310,26 @@ class _LoginPageState extends State<LoginPage> {
                     SizedBox(
                       height: 20,
                     ),
-                    OutlineBtn(
-                        btnText: "Back to Login "),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _pageState = 1;
+                        });
+                      },
+                      child: OutlineBtn(
+                        btnText: "Back To Login",
+                      ),
+                    )
                   ],
                 ),
               ],
             ),
             
           ),
-        ),
+
       ],
     );
   }
@@ -273,7 +338,9 @@ class _LoginPageState extends State<LoginPage> {
 
 
 class InputWithIcon extends StatefulWidget {
-  const InputWithIcon({Key? key}) : super(key: key);
+  final IconData icon;
+  final String hint;
+  InputWithIcon({required this.icon, required this.hint});
 
   @override
   _InputWithIconState createState() => _InputWithIconState();
@@ -283,33 +350,36 @@ class _InputWithIconState extends State<InputWithIcon> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
-        border: Border.all(
-            color: Color(0xffBC7C7C7),
-            width: 2
-        ),
-        borderRadius: BorderRadius.circular(50),
+      decoration: BoxDecoration(
+          border: Border.all(
+              color: Color(0xFFBC7C7C7),
+              width: 2
+          ),
+          borderRadius: BorderRadius.circular(50)
       ),
       child: Row(
-        children: [
+        children: <Widget>[
           Container(
-            width: 60,
-            child: Icon(
-              Icons.email,
-              size: 20,
-              color: Colors.teal.shade600,
-            ),
+              width: 60,
+              child: Icon(
+                widget.icon,
+                size: 20,
+                color: Color(0xFF63AFBF),
+              )
           ),
-          Container(
-              child: TextField(
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    contentPadding: EdgeInsets.symmetric(vertical: 20),
-                    hintText: "Enter Email.."
-                ),
-              ))
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 20),
+                  border: InputBorder.none,
+                  hintText: widget.hint
+              ),
+            ),
+          )
         ],
       ),
     );
   }
 }
+
+
