@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
 import 'outline.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   double _loginXoffset = 0;
   double _loginYoffset = 0;
 
- double _contactYoffset = 0;
+  double _contactYoffset = 0;
   double _contactHeight = 0;
 
   double  _loginwidth = 0;
@@ -116,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                           milliseconds: 1000,
                         ),
                           margin:  EdgeInsets.only(
-                              top :_headingtop),
+                              top :50),
 
                           child: Text('About Us' ,style: TextStyle(
                              color: _headingcolor ,
@@ -126,14 +126,17 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                           ),
                       ),
-                      Container(
+                      AnimatedContainer(curve:  Curves.fastLinearToSlowEaseIn,
+                        duration: Duration(
+                          milliseconds: 1000,
+                        ),
                         margin: EdgeInsets.all(20),
                         padding: EdgeInsets.symmetric(horizontal: 32),
                         child: Text('We are a Not for Profit trust venture building Wellness on wheels (The Tann Mann \'Gaadi\') to address the serious problem of open defecation which is a major health risk for all in developing countriesWe are in the mission of integrating technology with our social cause. We are in the process of providing a holistic approach to social responsibility keeping health, sensitization, safety and Eco-friendly solution',
                          textAlign: TextAlign.center,
                         style: TextStyle(
                         color: _headingcolor,
-                        fontSize: 16,
+                        fontSize: 11,
         ),
                       ),
                       ),
@@ -145,7 +148,9 @@ class _LoginPageState extends State<LoginPage> {
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal:32 ),
                   child: Center(
-                      child: Image.asset("assets/images/image1.png"),),
+                      child: Image( image: AssetImage('assets/images/image1.png',),
+                          width: 200
+                      )),
                 ),
               ),
               Container(
@@ -162,11 +167,11 @@ class _LoginPageState extends State<LoginPage> {
 
                   },
                   child: Container(
-                    margin: EdgeInsets.all(32),
-                    padding: EdgeInsets.all(20),
+                    margin: EdgeInsets.all(30),
+                    padding: EdgeInsets.all(15),
                     width:double.infinity,
                     decoration: BoxDecoration(
-                      color: Color(0xffE0902F),
+                      color: Color(0xFFE0902F),
                       borderRadius: BorderRadiusDirectional.circular(50),
                     ),
                     child: Center(
@@ -231,6 +236,10 @@ class _LoginPageState extends State<LoginPage> {
                       icon: Icons.vpn_key,
                       hint: "Enter Password...",
                     ),
+
+                    SizedBox(
+                      height: 140,
+                    ),
                     Column(
                       children: [
                         PrimaryButton(
@@ -246,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           },
                           child: OutlineBtn(
-                            btnText: "Create New Account",
+                            btnText: "Contact Us",
                           ),
                         )
                       ],
@@ -287,26 +296,66 @@ class _LoginPageState extends State<LoginPage> {
                       margin: EdgeInsets.only(bottom :20),
                       child: Text(
                         "Happy to have you",
+                      textAlign: TextAlign.start,
                       style: TextStyle(
                         fontSize: 20,
                       ),
                       ),
                     ),
-                    InputWithIcon(
-                      icon: Icons.email,
-                      hint: "Enter Email...",
-                    ),
-                    SizedBox(height: 20,),
-                    InputWithIcon(
-                      icon: Icons.vpn_key,
-                      hint: "Enter Password...",
-                    )
+
+                      Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              child: Image( image: AssetImage('assets/images/ins.png',),
+                        width: 40
+                              )
+                              ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                                child: Image( image: AssetImage('assets/images/fb.png',),
+                                    width: 40
+                                )
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                                child: Image( image: AssetImage('assets/images/twi.png',),
+                                   width: 40
+                                )
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                                child: Image( image: AssetImage('assets/images/lin.png',),
+                                  width: 40
+                                )
+                            ),
+
+                          ],
+                        ),
+                      )
+
+
+                    // InputWithIcon(
+                    //   icon: Icons.email,
+                    //   hint: "Enter Email...",
+                    // ),
+                    // SizedBox(height: 20,),
+                    // InputWithIcon(
+                    //   icon: Icons.vpn_key,
+                    //   hint: "Enter Password...",
+                    // )
                   ],
                 ),
                 Column(
 
                   children: [
-                    PrimaryButton(btnText: "Contact Us"),
+                   // PrimaryButton(btnText: "Contact Us"),
                     SizedBox(
                       height: 20,
                     ),

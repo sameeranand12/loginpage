@@ -15,15 +15,15 @@ class _PrimaryButtonState extends State<PrimaryButton> {
     return Container(
       decoration: BoxDecoration(
           color: Color(0xffE0902F),
-          borderRadius: BorderRadius.circular(50)
+          borderRadius: BorderRadius.circular(30)
       ),
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(10),
       child: Center(
         child: Text(
           widget.btnText,
           style: TextStyle(
               color: Colors.white,
-              fontSize: 16
+              fontSize: 15
           ),
         ),
       ),

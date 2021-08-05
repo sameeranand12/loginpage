@@ -17,15 +17,15 @@ class _OutlineBtnState extends State<OutlineBtn> {
               color: Colors.grey,
               width: 2
           ),
-          borderRadius: BorderRadius.circular(50)
+          borderRadius: BorderRadius.circular(30)
       ),
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(10),
       child: Center(
         child: Text(
           widget.btnText,
           style: TextStyle(
               color: Colors.black,
-              fontSize: 16
+              fontSize: 15
           ),
         ),
       ),
